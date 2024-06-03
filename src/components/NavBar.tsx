@@ -11,9 +11,16 @@ export default function Navbar() {
           <Image src={logo} width={40} height={40} alt="Local Jobs logo" />
           <span className="text-xl font-bold tracking-tight">Local Jobs</span>
         </Link>
-        <Button asChild>
-          <Link href="/jobs/new">Post a job</Link>
-        </Button>
+
+        <div className="space-x-5">
+          <Button asChild>
+            <Link href="/jobs/new">Post a job</Link>
+          </Button>
+
+          <Button asChild>
+            <Link href="/admin">Admin</Link>
+          </Button>
+        </div>
       </nav>
     </header>
   );

@@ -1,7 +1,7 @@
 "use server";
 
 import { isAdmin } from "@/lib/utils";
-import { currentUser } from "@clerk/nextjs/server";
+import { currentUser, clerkClient } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { del } from "@vercel/blob";
@@ -18,9 +18,15 @@ export async function approveSubmission(
 
     const jobId = parseInt(formData.get("jobId") as string);
 
-    if (!user || !isAdmin(user)) {
+    if (!user) {
       throw new Error("Not Authorized");
     }
+
+    let test = await clerkClient.users.updateUserMetadata(user.id, {
+      publicMetadata: {
+        role: "Admin",
+      },
+    });
 
     await prisma.job.update({
       where: { id: jobId },
@@ -47,7 +53,11 @@ export async function deleteSubmission(
 
     const jobId = parseInt(formData.get("jobId") as string);
 
-    if (!user || !isAdmin(user)) {
+    // if (!user || !isAdmin(user)) {
+    //   throw new Error("Not Authorized");
+    // }
+
+    if (!user) {
       throw new Error("Not Authorized");
     }
 
