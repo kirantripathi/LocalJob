@@ -59,6 +59,8 @@ const JobResult = async ({
     }),
   ]);
 
+
+
   const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
@@ -70,7 +72,7 @@ const JobResult = async ({
           </Link>
         );
       })}
-     {data?.length &&  <PaginationComponent totalPage={totalPages} />}
+      {data?.length && <PaginationComponent totalPage={totalPages} />}
       {data.length == 0 && (
         <p className="m-auto text-center">
           No Jobs Found.Try Adjusting your search filters
