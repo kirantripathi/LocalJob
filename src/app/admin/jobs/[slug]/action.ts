@@ -34,6 +34,7 @@ export async function approveSubmission(
     });
 
     revalidatePath("/");
+    redirect("/admin");
   } catch (error) {
     let message = "Something went wrong";
 
