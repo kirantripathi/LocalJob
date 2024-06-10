@@ -34,7 +34,7 @@ export async function approveSubmission(
     });
 
     revalidatePath("/");
-    redirect("/admin");
+ 
   } catch (error) {
     let message = "Something went wrong";
 
@@ -43,6 +43,9 @@ export async function approveSubmission(
     }
     return { error: message };
   }
+  // internally redirect throws and error so it need to be outside try catd block
+
+  redirect("/admin");
 }
 
 export async function deleteSubmission(
