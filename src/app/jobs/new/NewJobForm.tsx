@@ -54,7 +54,7 @@ const NewJobForm = () => {
       alert("Something went wrong, Please try again");
     }
 
-    createJobPosting(formData);
+ 
   };
 
   return (
